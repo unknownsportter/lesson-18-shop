@@ -200,4 +200,3 @@ export const dataArr = [
         rating: { rate: 3.6, count: 145 },
     },
 ];
-

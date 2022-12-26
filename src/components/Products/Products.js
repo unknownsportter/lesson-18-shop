@@ -1,23 +1,23 @@
 import React from 'react';
 import Product from '../Product/Product';
 import './Products.css';
-import './productsData';
+import { dataArr } from '../Data/productsData';
 
-const Products = ({ img, price, title }) => {
+const Products = () => {
     return (
         <section className="products">
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
-            <Product />
+            {dataArr.map((item) => {
+                return (
+                    <Product
+                        price={item.price + '$'}
+                        img={item.image}
+                        title={item.title}
+                    />
+                );
+            })}
         </section>
     );
 };
 
 export default Products;
+// img={item.image} price={item.price}

@@ -3,18 +3,18 @@
     flex-wrap: wrap;
 }
 @media (max-width: 920px) {
-  .product-card {
-    flex: 1 21%;
-  }
+    .product-card {
+        flex: 1 21%;
+    }
 
-  .products .product-card:first-child,
-  .products .product-card:nth-child(2) {
-    flex: 2 46%;
-  }
+    .products .product-card:first-child,
+    .products .product-card:nth-child(2) {
+        flex: 2 46%;
+    }
 }
 
 @media (max-width: 600px) {
-  .product-card {
-    flex: 1 46%;
-  }
+    .product-card {
+        flex: 1 46%;
+    }
 }

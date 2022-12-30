@@ -1,19 +1,26 @@
 import React from 'react';
-import './FilterBy.css'
-const FilterBy = () => {
+import './FilterBy.css';
+
+const FilterBy = ({ data }) => {
+    const categories = data
+        .map((item) => item.category)
+        .filter((value, index, array) => array.indexOf(value) === index);
+
     return (
-        <div className="collection-sort">
-            <label>Sort by:</label>
-            <select>
-                <option value="/">Featured</option>
-                <option value="/">Best Selling</option>
-                <option value="/">Alphabetically, A-Z</option>
-                <option value="/">Alphabetically, Z-A</option>
-                <option value="/">Price, low to high</option>
-                <option value="/">Price, high to low</option>
-                <option value="/">Date, new to old</option>
-                <option value="/">Date, old to new</option>
-            </select>
+        <div className="sort">
+            <div className="collection-sort">
+                <label>Filter by:</label>
+                <select>
+                    <option>All</option>
+                    {categories.map((item, index) => {
+                        return (
+                            <option key={index + 1} value={item}>
+                                {item}
+                            </option>
+                        );
+                    })}
+                </select>
+            </div>
         </div>
     );
 };

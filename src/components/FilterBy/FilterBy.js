@@ -1,17 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './FilterBy.css';
 
-const FilterBy = ({ data }) => {
-    const categories = data
-        .map((item) => item.category)
-        .filter((value, index, array) => array.indexOf(value) === index);
-
+const FilterBy = ({ categories, funcFilter }) => {
     return (
         <div className="sort">
             <div className="collection-sort">
                 <label>Filter by:</label>
-                <select>
-                    <option>All</option>
+                <select onChange={funcFilter}>
+                    <option value={'All'}>All</option>
                     {categories.map((item, index) => {
                         return (
                             <option key={index + 1} value={item}>

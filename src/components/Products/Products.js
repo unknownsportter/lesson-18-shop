@@ -8,6 +8,7 @@ const Products = ({ data }) => {
             {data.map((item, index) => {
                 return (
                     <Product
+                        value={item.category}
                         price={item.price + '$'}
                         img={item.image}
                         title={item.title}

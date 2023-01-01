@@ -1,9 +1,9 @@
 import React from 'react';
 import './Product.css';
 
-const Product = ({ img, price, title, index }) => {
+const Product = ({ img, price, title, index, value }) => {
     return (
-        <div key={index} className="product-card">
+        <div key={index} value={value} className="product-card">
             <div className="product-image">
                 <img alt="/" src={img} />
             </div>

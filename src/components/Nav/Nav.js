@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+// import MyContext from '../../MyContext';
 import SortBy from '../SortBy/SortBy';
 import FilterBy from '../FilterBy/FilterBy';
 import './Nav.css';
-import { dataArr } from '../../Data/productsData';
 
-const Nav = ({ categories, funcFilter }) => {
+const Nav = () => {
     return (
         <nav className="product-filter">
             <h1>Products</h1>
             <SortBy />
-            <FilterBy categories={categories} funcFilter={funcFilter} />
+            <FilterBy />
         </nav>
     );
 };

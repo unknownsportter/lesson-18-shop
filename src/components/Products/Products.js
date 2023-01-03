@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import MyContext from '../../MyContext';
 import Product from '../Product/Product';
 import './Products.css';
 
-const Products = ({ data }) => {
+const Products = () => {
+    const { productsData } = useContext(MyContext);
+
     return (
         <section className="products">
-            {data.map((item, index) => {
+            {productsData.map((item, index) => {
                 return (
                     <Product
                         value={item.category}

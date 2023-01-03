@@ -47,6 +47,7 @@ function App() {
                 productsData,
                 categories,
                 filterProductByCategory,
+                
             }}
         >
             <div className="App">

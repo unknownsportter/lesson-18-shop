@@ -1,11 +1,10 @@
 import React from 'react';
 
 const ShopingCart = () => {
-
     return (
-        <div>
-            <button>Shoping Cart</button>
-        </div>
+        <button className="cart-icon-btn">
+            Shoping Cart <span className="items-in-cart">"0"</span>
+        </button>
     );
 };
 

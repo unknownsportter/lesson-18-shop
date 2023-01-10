@@ -200,3 +200,25 @@ export const dataArr = [
         rating: { rate: 3.6, count: 145 },
     },
 ];
+
+// const cartFunctions = (condition, e) => {
+//     // debugger;
+//     const allProductsWithCart = [...allProducts];
+
+//     if (condition === 'add') {
+//         if (allProductsWithCart.cart.itemId.includes(e)) {
+//             allProductsWithCart.cart.itemId[e].amount += 1;
+//         } else {
+//             allProductsWithCart.cart.itemId += e;
+//             allProductsWithCart.cart.itemId[e].amount += 1;
+//         }
+//         console.log(allProductsWithCart);
+//     } else if (condition === 'subtract') {
+//         if (allProductsWithCart.cart.itemId[e].amount > 0) {
+//             allProductsWithCart.cart.itemId[e].amount -= 1;
+//         } else {
+//             allProductsWithCart.cart.itemId.pop(e);
+//         }
+//         console.log(allProductsWithCart);
+//     }
+// };

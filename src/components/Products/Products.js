@@ -16,7 +16,7 @@ const Products = () => {
                         img={item.image}
                         title={item.title}
                         key={index + 10}
-                        btnValue={item.id}
+                        itemId={item.id}
                     />
                 );
             })}

@@ -3,13 +3,19 @@ import MyContext from './MyContext';
 import './App.css';
 import Nav from './components/Nav/Nav';
 import Products from './components/Products/Products';
-// import { dataArr } from './Data/productsData';v
+import ShopingCart from './components/ShopingCart/ShopingCart';
+import Loading from './components/Loading/Loading';
 
 function App() {
     const [allProducts, setAllProducts] = useState([]);
     const [productsData, setproductsData] = useState([]);
-    // const [sort, setSort] = useState(['Featured']);
-    // const [category, setCategory] = useState('All');
+    const [productsToCart, setProductsToCart] = useState([]);
+    const [amount, setAmount] = useState(0);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        dataFetch();
+    }, []);
 
     const dataFetch = async () => {
         const api = 'https://fakestoreapi.com/products';
@@ -18,6 +24,8 @@ function App() {
             const data = await response.json();
             setproductsData(data);
             setAllProducts(data);
+            setProductsToCart(data);
+            setLoading(false);
         } catch (error) {
             console.log(error + 'this is Error');
         }
@@ -33,13 +41,31 @@ function App() {
         }
     };
 
-    useEffect(() => {
-        dataFetch();
-    }, []);
-
     const categories = allProducts
         .map((item) => item.category)
         .filter((value, index, array) => array.indexOf(value) === index);
+
+    const cartFunctions = (condition, itemOnClick) => {
+        // debugger;
+
+        if (condition === 'add') {
+            productsToCart.filter((p) => {
+                if (p.id === itemOnClick) {
+                    setAmount((prevAmount) => prevAmount + 1);
+                    console.log(p, amount);
+                }
+            });
+        } else {
+            console.log('else');
+            console.log(condition, itemOnClick);
+        }
+    };
+
+    // if (!p.amount) {
+    //     return p + { amount: amount };
+    // } else if (p.amount > 0) {
+    //     return setAmount((prev) => prev + 1);
+    // }
 
     return (
         <MyContext.Provider
@@ -47,10 +73,12 @@ function App() {
                 productsData,
                 categories,
                 filterProductByCategory,
-                
+                ShopingCart,
+                cartFunctions,
             }}
         >
             <div className="App">
+                {loading && <Loading />}
                 <Nav />
                 <Products />
             </div>

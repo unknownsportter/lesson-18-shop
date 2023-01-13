@@ -4,6 +4,7 @@ import MyContext from '../../MyContext';
 
 const Product = ({ img, price, title, index, value, itemId }) => {
     const { cartFunctions } = useContext(MyContext);
+
     return (
         <div key={index} value={value} className="product-card">
             <div className="product-image">
@@ -15,25 +16,24 @@ const Product = ({ img, price, title, index, value, itemId }) => {
 
                 <button
                     value={itemId}
-                    className="cart-btn"
+                    className="cart-btn add-btn"
                     onClick={(itemOnClick) =>
                         cartFunctions('add', parseInt(itemOnClick.target.value))
                     }
                 >
-                    +
+                    Add to cart
                 </button>
-                <p className="item-amount">"amount value"</p>
                 <button
                     value={itemId}
-                    className="cart-btn"
+                    className="cart-btn remove-btn"
                     onClick={(itemOnClick) =>
                         cartFunctions(
-                            'subtract',
+                            'remove all',
                             parseInt(itemOnClick.target.value)
                         )
                     }
                 >
-                    -
+                    Remove All
                 </button>
             </div>
         </div>

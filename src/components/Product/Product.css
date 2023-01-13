@@ -40,8 +40,16 @@
 }
 
 .cart-btn {
-    width: 1.6rem;
     height: 1.6rem;
     border: 1px solid rgba(34, 34, 34, 0.555);
-    border-radius: 20%;
+    border-radius: 1rem;
+    margin: 0.1rem 0;
+}
+
+.add-btn {
+    width: 8rem;
+}
+
+.remove-btn {
+    background-color: rgb(245, 115, 115);
 }

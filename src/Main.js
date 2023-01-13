@@ -6,6 +6,7 @@ import Loading from './components/Loading/Loading';
 import ShopingCart from './components/ShopingCart/ShopingCart';
 import Nav from './components/Nav/Nav';
 import App from './App.js';
+import CartPage from './pages/CartPage';
 
 function Main() {
     const [allProducts, setAllProducts] = useState([]);
@@ -25,7 +26,7 @@ function Main() {
             const data = await response.json();
             setproductsData(data);
             setAllProducts(data);
-            setProductsToCart(data);
+            // setProductsToCart();
             setLoading(false);
         } catch (error) {
             console.log(error + 'this is Error');
@@ -52,20 +53,27 @@ function Main() {
         // debugger;
 
         if (condition === 'add') {
-            productsToCart.filter((p) => {
-                if (p.id === itemOnClick) {
+            productsData.filter((product) => {
+                if (product.id === itemOnClick) {
+                    setProductsToCart(product);
                     setAmount((prevAmount) => prevAmount + 1);
-                    console.log(p, amount);
+                    // setProductsToCart((prevP) => {
+                    //     prevP = product;
+                    //     if (prevP[product]) {
+                    //         return console.log(prevP[product]);
+                    //     }
+                    // });
                 }
             });
         } else {
             console.log('else');
-            productsToCart.filter((p) => {
+            productsData.filter((p) => {
                 if (p.id === itemOnClick) {
                     console.log(condition, p);
                 }
             });
         }
+        console.log(productsToCart, amount);
     };
 
     return (
@@ -77,6 +85,8 @@ function Main() {
                     filterProductByCategory,
                     ShopingCart,
                     cartFunctions,
+                    amount,
+                    productsToCart,
                 }}
             >
                 {loading && <Loading />}
@@ -90,6 +100,7 @@ function Main() {
                             </div>
                         }
                     />
+                    <Route path="/Cart" element={<CartPage />} />
                 </Routes>
             </MyContext.Provider>
         </BrowserRouter>

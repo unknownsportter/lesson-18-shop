@@ -17,6 +17,7 @@ const Products = () => {
                         title={item.title}
                         key={index + 10}
                         itemId={item.id}
+                        itemAmount={item.amount}
                     />
                 );
             })}

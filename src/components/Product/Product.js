@@ -2,7 +2,7 @@ import { React, useContext } from 'react';
 import './Product.css';
 import MyContext from '../../MyContext';
 
-const Product = ({ img, price, title, index, value, itemId }) => {
+const Product = ({ img, price, title, index, value, itemId, itemAmount }) => {
     const { cartFunctions } = useContext(MyContext);
 
     return (
@@ -23,12 +23,13 @@ const Product = ({ img, price, title, index, value, itemId }) => {
                 >
                     Add to cart
                 </button>
+                <h5>{itemAmount}</h5>
                 <button
                     value={itemId}
                     className="cart-btn remove-btn"
                     onClick={(itemOnClick) =>
                         cartFunctions(
-                            'remove all',
+                            'remove',
                             parseInt(itemOnClick.target.value)
                         )
                     }

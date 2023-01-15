@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
-import Product from '../components/Product/Product';
-import MyContext from '../MyContext';
+import Product from '../Product/Product';
+import MyContext from '../../MyContext';
 
-const CartPage = () => {
-    const { amount, productsToCart } = useContext(MyContext);
-    console.log(productsToCart);
+const CartDrawer = () => {
+    const { productsToCart } = useContext(MyContext);
     return (
         <section className="products">
             {productsToCart.map((item, index) => {
@@ -14,8 +13,9 @@ const CartPage = () => {
                         price={item.price + '$'}
                         img={item.image}
                         title={item.title}
-                        key={index + 10}
+                        key={index + 11}
                         itemId={item.id}
+                        itemAmount={item.amount}
                     />
                 );
             })}
@@ -23,4 +23,4 @@ const CartPage = () => {
     );
 };
 
-export default CartPage;
+export default CartDrawer;

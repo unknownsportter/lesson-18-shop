@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MyContext from './MyContext';
 import './App.css';
+import './Main.css';
 import Loading from './components/Loading/Loading';
 import ShopingCart from './components/ShopingCart/ShopingCart';
 import Nav from './components/Nav/Nav';
 import App from './App.js';
 import CartPage from './pages/CartPage';
+import Button from '@mui/material/Button';
+import CartDrawer from './components/CartDrawer/CartDrawer';
+import { Drawer } from '@mui/material';
 
 function Main() {
     const [allProducts, setAllProducts] = useState([]);
@@ -14,6 +18,7 @@ function Main() {
     const [productsToCart, setProductsToCart] = useState([]);
     const [amount, setAmount] = useState(0);
     const [loading, setLoading] = useState(true);
+    const [cartOpen, setCartOpen] = useState(false);
 
     useEffect(() => {
         dataFetch();
@@ -49,31 +54,34 @@ function Main() {
 
     //
 
-    const cartFunctions = (condition, itemOnClick) => {
+    const cartFunctions = (condition, id) => {
         // debugger;
+        const cartCopy = [...productsToCart];
+        const cartItemIndex = cartCopy.findIndex(
+            (product) => product.id === id
+        );
+        const allProductsItemIndex = productsData.findIndex(
+            (product) => product.id === id
+        );
 
         if (condition === 'add') {
-            productsData.filter((product) => {
-                if (product.id === itemOnClick) {
-                    setProductsToCart(product);
-                    setAmount((prevAmount) => prevAmount + 1);
-                    // setProductsToCart((prevP) => {
-                    //     prevP = product;
-                    //     if (prevP[product]) {
-                    //         return console.log(prevP[product]);
-                    //     }
-                    // });
-                }
-            });
+            if (cartItemIndex === -1) {
+                const newItem = {
+                    ...productsData[allProductsItemIndex],
+                    amount: 1,
+                };
+                cartCopy.push(newItem);
+            } else {
+                cartCopy[cartItemIndex].amount += 1;
+            }
         } else {
-            console.log('else');
-            productsData.filter((p) => {
-                if (p.id === itemOnClick) {
-                    console.log(condition, p);
-                }
-            });
+            if (cartCopy[cartItemIndex].amount >= 2) {
+                cartCopy[cartItemIndex].amount -= 1;
+            } else if (cartCopy[cartItemIndex].amount === 1) {
+                cartCopy.splice(cartItemIndex, 1);
+            }
         }
-        console.log(productsToCart, amount);
+        setProductsToCart(cartCopy);
     };
 
     return (
@@ -90,6 +98,14 @@ function Main() {
                 }}
             >
                 {loading && <Loading />}
+                <Button onClick={() => setCartOpen(true)}>Open Cart</Button>
+                <Drawer
+                    anchor={'left'}
+                    open={cartOpen}
+                    onClose={() => setCartOpen(false)}
+                >
+                    <div className="cart-Drawer">{<CartDrawer />}</div>
+                </Drawer>
                 <Nav />
                 <Routes>
                     <Route

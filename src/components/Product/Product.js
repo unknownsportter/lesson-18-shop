@@ -3,7 +3,7 @@ import './Product.css';
 import MyContext from '../../MyContext';
 
 const Product = ({ img, price, title, index, value, itemId, itemAmount }) => {
-    const { cartFunctions } = useContext(MyContext);
+    const { inDrawer, cartFunctions, setIsInCart } = useContext(MyContext);
 
     return (
         <div key={index} value={value} className="product-card">
@@ -18,7 +18,11 @@ const Product = ({ img, price, title, index, value, itemId, itemAmount }) => {
                     value={itemId}
                     className="cart-btn add-btn"
                     onClick={(itemOnClick) =>
-                        cartFunctions('add', parseInt(itemOnClick.target.value))
+                        cartFunctions(
+                            'add',
+                            parseInt(itemOnClick.target.value),
+                            setIsInCart((prevInCart) => (prevInCart += 1))
+                        )
                     }
                 >
                     Add to cart
@@ -30,12 +34,21 @@ const Product = ({ img, price, title, index, value, itemId, itemAmount }) => {
                     onClick={(itemOnClick) =>
                         cartFunctions(
                             'remove',
-                            parseInt(itemOnClick.target.value)
+                            parseInt(itemOnClick.target.value),
+                            setIsInCart((prevInCart) => {
+                                if (prevInCart > 0) {
+                                    return prevInCart - 1;
+                                } else {
+                                    setIsInCart(0);
+                                }
+                            })
                         )
                     }
                 >
-                    Remove All
+                    Remove
                 </button>
+                <button className="cart-btn item-Info">Item info</button>
+                {/* {inDrawer && <button>remove All</button>} */}
             </div>
         </div>
     );

@@ -19,6 +19,7 @@ function Main() {
     const [amount, setAmount] = useState(0);
     const [loading, setLoading] = useState(true);
     const [cartOpen, setCartOpen] = useState(false);
+    const [isInCart, setIsInCart] = useState(0);
 
     useEffect(() => {
         dataFetch();
@@ -75,7 +76,9 @@ function Main() {
                 cartCopy[cartItemIndex].amount += 1;
             }
         } else {
-            if (cartCopy[cartItemIndex].amount >= 2) {
+            if (!cartCopy[cartItemIndex].amount) {
+                console.log('ERROR amount');
+            } else if (cartCopy[cartItemIndex].amount >= 2) {
                 cartCopy[cartItemIndex].amount -= 1;
             } else if (cartCopy[cartItemIndex].amount === 1) {
                 cartCopy.splice(cartItemIndex, 1);
@@ -95,10 +98,14 @@ function Main() {
                     cartFunctions,
                     amount,
                     productsToCart,
+                    isInCart,
+                    setIsInCart,
                 }}
             >
                 {loading && <Loading />}
-                <Button onClick={() => setCartOpen(true)}>Open Cart</Button>
+                <Button onClick={() => setCartOpen(true)}>
+                    Open Cart {isInCart}
+                </Button>
                 <Drawer
                     anchor={'left'}
                     open={cartOpen}

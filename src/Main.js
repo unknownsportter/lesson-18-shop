@@ -7,7 +7,7 @@ import Loading from './components/Loading/Loading';
 import ShopingCart from './components/ShopingCart/ShopingCart';
 import Nav from './components/Nav/Nav';
 import App from './App.js';
-import CartPage from './pages/CartPage';
+import ProductPage from './pages/ProductPage';
 import Button from '@mui/material/Button';
 import CartDrawer from './components/CartDrawer/CartDrawer';
 import { Drawer } from '@mui/material';
@@ -20,6 +20,7 @@ function Main() {
     const [loading, setLoading] = useState(true);
     const [cartOpen, setCartOpen] = useState(false);
     const [isInCart, setIsInCart] = useState(0);
+    const [productIdPage, setProductIdPage] = useState([]);
 
     useEffect(() => {
         dataFetch();
@@ -76,9 +77,7 @@ function Main() {
                 cartCopy[cartItemIndex].amount += 1;
             }
         } else {
-            if (!cartCopy[cartItemIndex].amount) {
-                console.log('ERROR amount');
-            } else if (cartCopy[cartItemIndex].amount >= 2) {
+            if (cartCopy[cartItemIndex].amount >= 2) {
                 cartCopy[cartItemIndex].amount -= 1;
             } else if (cartCopy[cartItemIndex].amount === 1) {
                 cartCopy.splice(cartItemIndex, 1);
@@ -100,6 +99,8 @@ function Main() {
                     productsToCart,
                     isInCart,
                     setIsInCart,
+                    setProductIdPage,
+                    productIdPage,
                 }}
             >
                 {loading && <Loading />}
@@ -111,7 +112,12 @@ function Main() {
                     open={cartOpen}
                     onClose={() => setCartOpen(false)}
                 >
-                    <div className="cart-Drawer">{<CartDrawer />}</div>
+                    <div className="cart-Drawer">
+                        {productsToCart.length <= 0 && (
+                            <h1 className="cart-h1">Your cart is empty</h1>
+                        )}
+                        {<CartDrawer />}
+                    </div>
                 </Drawer>
                 <Nav />
                 <Routes>
@@ -123,7 +129,7 @@ function Main() {
                             </div>
                         }
                     />
-                    <Route path="/Cart" element={<CartPage />} />
+                    <Route path="/product" element={<ProductPage />} />
                 </Routes>
             </MyContext.Provider>
         </BrowserRouter>

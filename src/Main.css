@@ -1,3 +1,17 @@
 .cart-Drawer {
     width: 18rem;
 }
+
+.cart-h1 {
+    color: #666;
+    text-align: center;
+    margin: 5rem 0 0 0;
+    box-shadow: 0 0 0 0 #54b3d6;
+    transition: color 0.3s ease-in-out, 0.5s ease-in-out;
+    text-decoration: underline rgb(5, 138, 216);
+}
+
+.cart-h1:hover {
+    color: crimson;
+    cursor: pointer;
+}

@@ -41,21 +41,27 @@
 
 .cart-btn {
     height: 1.6rem;
+    width: 6rem;
     border: 1px solid rgba(34, 34, 34, 0.555);
     border-radius: 1rem;
     margin: 0.1rem 0;
-}
-
-.add-btn {
-    width: 8rem;
+    text-align: center;
+    font-size: 80%;
 }
 
 .remove-btn {
     background-color: rgb(245, 115, 115);
 }
 .item-Info {
-    display: block;
-    margin: 0 0 0.3rem 0.3rem;
+    display: inline;
+    margin: 0.2rem 0.1rem 0.3rem 0.1rem;
+}
+.item-Info:hover,
+.remove-btn:hover,
+.add-btn:hover {
+    cursor: pointer;
+    box-shadow: 0 0 2px 0 #383838 inset, 0 0 1px 1px #848584;
+    border: 1px solid #848584;
 }
 
 @media (max-width: 500px) {

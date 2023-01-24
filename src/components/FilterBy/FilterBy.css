@@ -5,7 +5,7 @@
 
 label {
     color: #666;
-    font-size: 10px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 2em;
     text-transform: uppercase;
@@ -13,4 +13,24 @@ label {
 
 .collection-sort:first-child {
     padding-right: 20px;
+}
+
+select {
+    height: 2.2rem;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    border-radius: 4px;
+
+    background: rgba(0, 0, 0, 0.021);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+    transition: all ease-in-out 0.15s;
+}
+
+select:hover {
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.3);
+}
+
+option {
+    margin: 40px;
+    background: rgba(0, 0, 0, 0.08);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 }

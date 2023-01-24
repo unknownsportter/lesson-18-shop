@@ -105,7 +105,7 @@ function Main() {
             >
                 {loading && <Loading />}
                 <Button onClick={() => setCartOpen(true)}>
-                    Open Cart {isInCart}
+                    Open Cart {isInCart >= 1 && isInCart}
                 </Button>
                 <Drawer
                     anchor={'left'}
@@ -114,7 +114,12 @@ function Main() {
                 >
                     <div className="cart-Drawer">
                         {productsToCart.length <= 0 && (
-                            <h1 className="cart-h1">Your cart is empty</h1>
+                            <h1
+                                className="cart-h1"
+                                onClick={() => setCartOpen(false)}
+                            >
+                                Your cart is empty
+                            </h1>
                         )}
                         {<CartDrawer />}
                     </div>

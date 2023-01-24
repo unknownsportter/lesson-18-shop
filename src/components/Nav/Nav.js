@@ -7,8 +7,10 @@ import { Link } from 'react-router-dom';
 const Nav = () => {
     return (
         <nav className="product-filter">
-            <h1>
-                <Link to={'/'}>Home</Link>
+            <h1 className="home-btn">
+                <Link to={'/'} className="home-link">
+                    Home
+                </Link>
             </h1>
             <SortBy />
             <FilterBy />

@@ -1,7 +1,6 @@
 import { React, useContext } from 'react';
 import './Product.css';
 import MyContext from '../../MyContext';
-// import { Link } from 'react-router-dom';
 
 const Product = ({ img, price, title, index, value, itemId, itemAmount }) => {
     const {
@@ -10,7 +9,6 @@ const Product = ({ img, price, title, index, value, itemId, itemAmount }) => {
         setIsInCart,
         // setProductIdPage,
         // productIdPage,
-        // productsToCart,
     } = useContext(MyContext);
 
     return (
